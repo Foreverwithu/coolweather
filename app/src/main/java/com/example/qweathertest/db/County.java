@@ -2,12 +2,12 @@ package com.example.qweathertest.db;
 
 import org.litepal.crud.LitePalSupport;
 
-public class Country extends LitePalSupport {
+public class County extends LitePalSupport {
 
 
     private int id;
     private String countyName;//县城名字
-    private String weatherId;//当前先驱的天气id
+    private int weatherId;//当前先驱的天气id
     private int cityId;//当前县所属的城市的id
 
     public int getId() {
@@ -33,11 +33,11 @@ public class Country extends LitePalSupport {
 
     }
 
-    public String getWeatherId() {
+    public int getWeatherId() {
         return weatherId;
     }
 
-    public void setWeatherId(String weatherId) {
+    public void setWeatherId(int weatherId) {
         this.weatherId = weatherId;
     }
 }

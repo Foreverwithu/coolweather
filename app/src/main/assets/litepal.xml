@@ -4,7 +4,7 @@
     <list>
         <mapping class="com.example.qweathertest.com.example.qweathertest.db.Province"/>
         <mapping class="com.example.qweathertest.com.example.qweathertest.db.City"/>
-        <mapping class="com.example.qweathertest.com.example.qweathertest.db.Country"/>
+        <mapping class="com.example.qweathertest.com.example.qweathertest.db.County"/>
     </list>
 
     <!--建立映射-->
