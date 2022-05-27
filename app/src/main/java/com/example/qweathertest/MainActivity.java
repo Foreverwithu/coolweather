@@ -1,10 +1,8 @@
-package util;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.qweathertest;
 
 import android.os.Bundle;
 
-import com.example.qweathertest.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
