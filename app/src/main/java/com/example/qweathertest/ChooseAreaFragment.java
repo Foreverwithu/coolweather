@@ -75,9 +75,9 @@ public class ChooseAreaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.choose_are, container, false);
-        titleText = (TextView) view.findViewById(R.id.title_text);
-        backButton = (Button) view.findViewById(R.id.back_button);
-        listView = (ListView) view.findViewById(R.id.list_view);
+        titleText =  view.findViewById(R.id.title_text);
+        backButton =  view.findViewById(R.id.back_button);
+        listView =  view.findViewById(R.id.list_view);
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, dataList);
         listView.setAdapter(adapter);
         return view;
@@ -93,20 +93,20 @@ public class ChooseAreaFragment extends Fragment {
                 selectedCity = cityList.get(position);
                 queryCounties();
             }
-//            else if(currentLevel == LEVEL_COUNTY){
-//                String weatherId = countyList.get(position).getWeatherId();
-//                if(getActivity() instanceof MainActivity){
-//                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
-//                    intent.putExtra("weather_id", weatherId);
-//                    startActivity(intent);
-//                    getActivity().finish();
-//                }else if(getActivity() instanceof WeatherActivity){
-//                    WeatherActivity activity = (WeatherActivity) getActivity();
-//                    activity.drawerLayout.closeDrawers();
-//                    activity.swipeRefresh.setRefreshing(true);
-//                    activity.requestWeather(weatherId);
+//                else if(currentLevel == LEVEL_COUNTY){
+//                    String weatherId = countyList.get(position).getWeatherId();
+//                    if(getActivity() instanceof MainActivity){
+//                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+//                        intent.putExtra("weather_id", weatherId);
+//                        startActivity(intent);
+//                        getActivity().finish();
+//                    }else if(getActivity() instanceof WeatherActivity){
+//                        WeatherActivity activity = (WeatherActivity) getActivity();
+//                        activity.drawerLayout.closeDrawers();
+//                        activity.swipeRefresh.setRefreshing(true);
+//                        activity.requestWeather(weatherId);
+//                    }
 //                }
-//            }
         });
         backButton.setOnClickListener(view -> {
             if(currentLevel == LEVEL_COUNTY){
@@ -195,13 +195,18 @@ public class ChooseAreaFragment extends Fragment {
                 Log.d("Fragment", responseText);
                 boolean result = false;
                 if("province".equals(type)){
+                    Log.e("url",type);
                     result = Utility.handleProvinceResponse(responseText);
+                    Log.e("url",type);
                 }else if("city".equals(type)){
+                    Log.e("url",type);
                     result = Utility.handleCityResponse(responseText, selectedProvince.getId());
                 }else if("county".equals(type)){
+                    Log.e("url",type);
                     result = Utility.handleCountyResponse(responseText, selectedCity.getId());
                 }
                 if(result){
+
                     getActivity().runOnUiThread(() -> {
                         closeProgressDialog();
                         switch (type) {
@@ -217,14 +222,15 @@ public class ChooseAreaFragment extends Fragment {
                         }
                     });
                 }
+
             }
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e){
+            public void onFailure( Call call,  IOException e){
                 //通过runOnUiThread()方法回到主线程处理逻辑
                 getActivity().runOnUiThread(() -> {
                     closeProgressDialog();
-                    Toast.makeText(getContext(), "加载失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "加载失败     ", Toast.LENGTH_SHORT).show();
                 });
+
             }
         });
     }
@@ -249,5 +255,4 @@ public class ChooseAreaFragment extends Fragment {
             progressDialog.dismiss();
         }
     }
-
 }

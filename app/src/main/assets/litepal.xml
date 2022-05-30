@@ -2,9 +2,9 @@
     <dbname value="q_weather"/>
     <version value="1"/>
     <list>
-        <mapping class="com.example.qweathertest.com.example.qweathertest.db.Province"/>
-        <mapping class="com.example.qweathertest.com.example.qweathertest.db.City"/>
-        <mapping class="com.example.qweathertest.com.example.qweathertest.db.County"/>
+        <mapping class="com.example.qweathertest.db.Province"/>
+        <mapping class="com.example.qweathertest.db.City"/>
+        <mapping class="com.example.qweathertest.db.County"/>
     </list>
 
     <!--建立映射-->

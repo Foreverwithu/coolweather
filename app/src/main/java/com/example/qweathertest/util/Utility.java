@@ -1,6 +1,7 @@
 package com.example.qweathertest.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.qweathertest.db.City;
 import com.example.qweathertest.db.County;
@@ -18,14 +19,16 @@ public class Utility {
      *
      * */
     public static boolean handleProvinceResponse(String response) {
-        if (TextUtils.isEmpty(response)) {
+
+        if (!TextUtils.isEmpty(response)) {
+            Log.e("song",response);
             try {
                 JSONArray allProvinces = new JSONArray(response);
                 for (int i = 0; i < allProvinces.length(); i++) {
                     JSONObject provinceObject = allProvinces.getJSONObject(i);
                     Province province = new Province();
                     province.setProvinceName(provinceObject.getString("name"));
-                    province.getProvinceCode();
+                    province.setProvinceCode(provinceObject.getInt("id"));
                     province.save();
                 }
                 return true;
@@ -43,7 +46,7 @@ public class Utility {
      *
      * */
     public static boolean handleCityResponse(String response, int provinceId) {
-        if (TextUtils.isEmpty(response)) {
+        if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray allCities = new JSONArray(response);
                 for (int i = 0; i < allCities.length(); i++) {
@@ -68,7 +71,7 @@ public class Utility {
      *
      * */
     public static boolean handleCountyResponse(String response, int cityId) {
-        if (TextUtils.isEmpty(response)) {
+        if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray allCounties = new JSONArray(response);
                 for (int i = 0; i < allCounties.length(); i++) {
